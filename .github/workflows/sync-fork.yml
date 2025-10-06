@@ -15,10 +15,15 @@ jobs:
   sync_latest_from_upstream:
     runs-on: ubuntu-latest
     name: Sync latest commits from upstream repo
+    permissions:
+      contents: write
+      pull-requests: write
 
     steps:
     - name: Checkout target repo
       uses: actions/checkout@v5
+      with:
+        token: ${{ secrets.WORKFLOW_TOKEN }}
 
     - name: Sync upstream changes
       id: sync
